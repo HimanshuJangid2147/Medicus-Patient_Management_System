@@ -4,9 +4,11 @@ import LoginPage from './pages/User/LoginPage';
 import SignupPage from './pages/User/SignupPage';
 import Navbar from './components/Navbar';
 import Doctor from './pages/User/Doctor';
+import Contact from './pages/User/Contact';
 import Appointments from './pages/User/Appointment';
 import PatientDetailForm from './pages/User/PatientDetailForm';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import SuccessfulAppointment from './components/AppointmentSucessfull';
 
 // Mock function to check if the user is an admin
 const isAdmin = () => {
@@ -31,8 +33,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/patient-form" element={<PatientDetailForm />} />
           <Route path="/doctors" element={<Doctor />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/adminn" element={<AdminDashboard />} />
+          <Route path="/appointment-success" element={<SuccessfulAppointment />} />
           <Route
             path="/admin"
             element={
