@@ -1,7 +1,7 @@
 import Doctor from "../models/doctor.model.js";
 import { generateToken } from "../lib/utils.js";
 import { randomBytes } from "crypto";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import cloudinary from "../lib/cloudinary.js";
 import nodemailer from "nodemailer";
 
@@ -19,8 +19,8 @@ export const registerDoctor = async (req, res) => {
             return res.status(400).json({ message: "Passwords do not match" });
         }
 
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(password, salt);
 
         const newDoctor = new Doctor({
             name,
@@ -61,7 +61,7 @@ export const loginDoctor = async (req, res) => {
             return res.status(404).json({ message: "Invalid credentials" });
         }
 
-        const isPasswordValid = await bcrypt.compare(password, doctor.password);
+        const isPasswordValid = await bcryptjs.compare(password, doctor.password);
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
@@ -514,8 +514,8 @@ export const resetPassword = async (req, res) => {
             });
         }
 
-        const salt = await bcrypt.genSalt(10);
-        doctor.password = await bcrypt.hash(newPassword, salt);
+        const salt = await bcryptjs.genSalt(10);
+        doctor.password = await bcryptjs.hash(newPassword, salt);
 
         // Clear the reset token fields
         doctor.resetToken = undefined;

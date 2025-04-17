@@ -1,6 +1,6 @@
 import Admin from "../models/admin.model.js";
 import { generateToken } from "../lib/utils.js";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 
 export const registerAdmin = async (req, res) => {
     
@@ -22,8 +22,8 @@ export const registerAdmin = async (req, res) => {
                 return res.status(400).json({ message: "Passwords do not match" });
               }
 
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(password, salt);
+            const salt = await bcryptjs.genSalt(10);
+            const hashedPassword = await bcryptjs.hash(password, salt);
 
             const newAdmin = new Admin({ name, email, password: hashedPassword, confirmPassword, gender });
 
@@ -53,7 +53,7 @@ export const loginAdmin = async (req, res) => {
             return res.status(404).json({ message: "Invalid credentials" });
         }
 
-        const isPasswordValid = await bcrypt.compare(password, admin.password);
+        const isPasswordValid = await bcryptjs.compare(password, admin.password);
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
