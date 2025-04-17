@@ -14,9 +14,11 @@ import paymentRoutes from './routes/payment.route.js';
 import cookieParser from 'cookie-parser';
 import categoriesRoute from "./routes/categories.route.js";
 import contactusRoute from "./routes/contactus.route.js";
+import path from 'path';
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve();
 const app = express();
 
 // Middleware
@@ -24,7 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin: ["http://localhost:5173"],
+        origin: ["http://localhost:5173", "https://*.vercel.app"],
         credentials: true,
     })
 );
@@ -47,6 +49,14 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Something went wrong!' });
 });
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
+    app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+    });
+}
+
 
 // Start server and connect to database
 app.listen(PORT, () => {
