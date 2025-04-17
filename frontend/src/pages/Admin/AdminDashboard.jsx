@@ -7,7 +7,7 @@ import PatientsPage from './PatientsPage.jsx';
 import DoctorsPage from './DoctorPage.jsx';
 import SettingsPage from './SettingsPage.jsx';
 import { useAdminStore } from '../../store/useAdminStore';
-import Notification from '../../components/admin/Notification.jsx';
+import Notification from '../../components/Admin/Notification.jsx';
 
 const AdminDashboard = () => {
   const { admin } = useAdminStore();
