@@ -196,7 +196,7 @@ const DoctorSignup = () => {
                                         <FaUserMd className="text-teal-600 text-5xl" />
                                     )}
                                 </div>
-                                <label
+{/*                                 <label
                                     htmlFor="image-upload"
                                     className="text-sm text-white font-medium cursor-pointer hover:underline transition-colors"
                                 >
@@ -208,7 +208,7 @@ const DoctorSignup = () => {
                                     accept="image/*"
                                     onChange={handleImageChange}
                                     className="hidden"
-                                />
+                                /> */}
                                 {errors.image && (
                                     <p className="text-red-200 text-xs mt-1">
                                         {errors.image}
