@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm install --prefix backend && cd frontend && npm install && npm install @vitejs/plugin-react --save-dev && npm run build",
+    "build": "npm install --prefix backend && npm rebuild bcrypt --prefix backend --build-from-source && cd frontend && npm install && npm install @vitejs/plugin-react --save-dev && npm run build",
     "start": "npm start --prefix backend"
   },
   "repository": {
