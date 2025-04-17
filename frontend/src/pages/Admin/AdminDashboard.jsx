@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import Sidebar from '../../components/admin/Sidebar';
+import Sidebar from '../../components/Admin/Sidebar.jsx';
 import AppointmentsPage from './AppointmentPage.jsx';
 import CategoriesPage from './CategoriesPage.jsx';
 import PatientsPage from './PatientsPage.jsx';
