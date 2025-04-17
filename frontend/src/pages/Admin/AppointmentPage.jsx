@@ -3,7 +3,7 @@ import { useAppointmentStore } from '../../store/useAppointmentStore.js';
 import AppointmentModal from '../../components/AppointmentModel.jsx';
 import RescheduleAppointmentModal from '../../components/RescheduleModel.jsx';
 import CancelAppointmentModal from '../../components/CancelAppointmentModel.jsx';
-import ResponsiveList from '../../components/admin/ResponsiveList.jsx';
+import ResponsiveList from '../../components/Admin/ResponsiveList.jsx';
 import {
     CalendarIcon,
     ClockIcon,

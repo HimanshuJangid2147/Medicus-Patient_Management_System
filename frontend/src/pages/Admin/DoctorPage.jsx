@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDoctorStore } from '../../store/useDoctorStore.js';
-import Modal from '../../components/admin/Model.jsx';
-import ResponsiveList from '../../components/admin/ResponsiveList.jsx';
+import Modal from '../../components/Admin/Model.jsx';
+import ResponsiveList from '../../components/Admin/ResponsiveList.jsx';
 import {
     MagnifyingGlassIcon, AdjustmentsHorizontalIcon, PlusIcon, PencilIcon, TrashIcon, CheckIcon,
     ArrowPathIcon, UserIcon

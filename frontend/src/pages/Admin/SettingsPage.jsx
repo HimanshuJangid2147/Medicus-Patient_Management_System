@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAdminStore } from '../../store/useAdminStore.js';
-import Modal from '../../components/admin/Model.jsx';
+import Modal from '../../components/Admin/Model.jsx';
 import {
     UserIcon, EnvelopeIcon, PhoneIcon, CogIcon, ArrowPathIcon, CheckIcon
 } from '@heroicons/react/24/outline';
