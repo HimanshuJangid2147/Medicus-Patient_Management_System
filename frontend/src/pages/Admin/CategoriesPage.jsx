@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useCategoriesStore } from '../../store/useCategoriesStore';
-import Modal from '../../components/admin/Model.jsx';
-import ResponsiveList from '../../components/admin/ResponsiveList';
+import Modal from '../../components/Admin/Model.jsx';
+import ResponsiveList from '../../components/Admin/ResponsiveList.jsx';
 import {
     MagnifyingGlassIcon, AdjustmentsHorizontalIcon, PlusIcon, PencilIcon, TrashIcon, CheckIcon,
     ArrowPathIcon, TagIcon, XCircleIcon
