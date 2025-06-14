@@ -4,6 +4,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { connectDB } from './lib/db.js';
 
@@ -23,8 +25,16 @@ import contactUsRoutes from './routes/contactus.route.js';
 // --- Pre-run setup ---
 dotenv.config();
 
+// ES module equivalent of __dirname for resolving file paths
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // --- Express App Initialization ---
 const app = express();
+
+// --- Connect to Database ---
+// This is the most important change: Connect to DB on module initialization
+connectDB();
 
 // --- Constants from Environment Variables ---
 const PORT = process.env.PORT || 5000;
@@ -36,9 +46,7 @@ app.use(helmet());
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    const allowedOrigins = CLIENT_ORIGIN.split(',').map(o => o.trim());
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (!origin || CLIENT_ORIGIN.split(',').map(o => o.trim()).includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -69,6 +77,7 @@ app.use('/api/v1/notification', notificationRoutes);
 app.use('/api/v1/payment', paymentRoutes);
 app.use('/api/v1/contact-us', contactUsRoutes);
 
+
 // --- Error Handling Middlewares ---
 app.use((req, res, next) => {
   const error = new Error(`Not Found - ${req.originalUrl}`);
@@ -85,11 +94,5 @@ app.use((err, req, res, next) => {
   });
 });
 
-// --- Server Startup ---
-app.listen(PORT, () => {
-  connectDB();
-  console.log(`Server is running in ${NODE_ENV} mode on port ${PORT}`);
-});
-
-// Export the app for Vercel
+// Export the app for Vercel. `app.listen` is not needed for serverless.
 export default app;
