@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "backend/server.js",
-      "use": "@vercel/node"
+      "use": "@vercel/node",
+      "config": {
+        "maxDuration": 30
+      }
     },
     {
       "src": "package.json",
@@ -35,11 +38,6 @@
       "dest": "/dist/index.html"
     }
   ],
-  "functions": {
-    "backend/server.js": {
-      "maxDuration": 30
-    }
-  },
   "env": {
     "NODE_ENV": "production"
   }
